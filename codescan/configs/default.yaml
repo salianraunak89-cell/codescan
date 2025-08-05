@@ -1,0 +1,201 @@
+# CodeScan Default Configuration
+# This file contains the default settings for CodeScan analysis.
+# Copy this file to your project root as .codescan.yaml and customize as needed.
+
+# File inclusion/exclusion patterns (glob syntax)
+include_patterns:
+  - "**/*"
+
+exclude_patterns:
+  # Version control
+  - "**/.git/**"
+  - "**/.svn/**"
+  - "**/.hg/**"
+  
+  # Dependencies
+  - "**/node_modules/**"
+  - "**/bower_components/**"
+  - "**/vendor/**"
+  - "**/.venv/**"
+  - "**/venv/**"
+  - "**/virtualenv/**"
+  
+  # Build artifacts
+  - "**/build/**"
+  - "**/dist/**"
+  - "**/target/**"
+  - "**/bin/**"
+  - "**/obj/**"
+  - "**/.gradle/**"
+  - "**/cmake-build-*/**"
+  
+  # Language-specific
+  - "**/__pycache__/**"
+  - "**/*.pyc"
+  - "**/*.pyo"
+  - "**/*.class"
+  - "**/*.jar"
+  - "**/*.war"
+  - "**/*.ear"
+  - "**/*.o"
+  - "**/*.so"
+  - "**/*.dll"
+  - "**/*.exe"
+  
+  # Minified files
+  - "**/*.min.js"
+  - "**/*.min.css"
+  - "**/*.map"
+  
+  # IDE and editor files
+  - "**/.idea/**"
+  - "**/.vscode/**"
+  - "**/*.swp"
+  - "**/*.swo"
+  - "**/*~"
+  
+  # Logs and temporary files
+  - "**/logs/**"
+  - "**/*.log"
+  - "**/tmp/**"
+  - "**/temp/**"
+
+# Languages to analyze
+enabled_languages:
+  - python
+  - javascript
+  - typescript
+  - java
+  - c
+  - cpp
+  - go
+  - rust
+  - php
+  - ruby
+  - swift
+  - kotlin
+  - scala
+
+# General scan settings
+max_file_size: 10485760  # 10MB in bytes
+timeout_per_file: 30     # seconds
+parallel_workers: 4      # number of concurrent workers
+
+# Analysis toggles
+security_scan: true
+dependency_scan: true
+best_practices: true
+code_style: true
+complexity_analysis: true
+
+# Output settings
+output_format: text  # json, html, text, sarif
+verbose: false
+
+# Analyzer-specific configurations
+analyzers:
+  # Python analyzer settings
+  python:
+    enabled: true
+    severity_level: medium
+    rules:
+      max_line_length: 88
+      max_complexity: 10
+      max_file_lines: 1000
+      max_nesting_depth: 4
+      check_docstrings: true
+      check_type_hints: true
+      check_imports: true
+    exclude_patterns: []
+
+  # JavaScript/TypeScript analyzer settings
+  javascript:
+    enabled: true
+    severity_level: medium
+    rules:
+      max_line_length: 100
+      max_complexity: 15
+      max_callback_depth: 3
+      check_console_logs: true
+      check_unused_vars: true
+      prefer_const: true
+      check_trailing_commas: true
+    exclude_patterns: []
+
+  # TypeScript-specific settings
+  typescript:
+    enabled: true
+    severity_level: medium
+    rules:
+      strict_null_checks: true
+      no_any: true
+      explicit_return_types: true
+    exclude_patterns: []
+
+  # Java analyzer settings
+  java:
+    enabled: true
+    severity_level: medium
+    rules:
+      max_line_length: 120
+      max_complexity: 15
+      check_naming_conventions: true
+    exclude_patterns: []
+
+  # C/C++ analyzer settings
+  c:
+    enabled: true
+    severity_level: medium
+    rules:
+      max_line_length: 100
+      max_complexity: 15
+    exclude_patterns: []
+
+  cpp:
+    enabled: true
+    severity_level: medium
+    rules:
+      max_line_length: 100
+      max_complexity: 15
+    exclude_patterns: []
+
+  # Go analyzer settings
+  go:
+    enabled: true
+    severity_level: medium
+    rules:
+      max_line_length: 100
+      max_complexity: 15
+    exclude_patterns: []
+
+  # Rust analyzer settings
+  rust:
+    enabled: true
+    severity_level: medium
+    rules:
+      max_line_length: 100
+      max_complexity: 15
+    exclude_patterns: []
+
+  # Security analyzer settings
+  security:
+    enabled: true
+    severity_level: high
+    rules:
+      check_sql_injection: true
+      check_xss: true
+      check_hardcoded_secrets: true
+      check_weak_crypto: true
+      check_path_traversal: true
+    exclude_patterns: []
+
+  # Best practices analyzer settings
+  best_practices:
+    enabled: true
+    severity_level: medium
+    rules:
+      check_naming_conventions: true
+      check_function_length: true
+      check_class_design: true
+      check_error_handling: true
+    exclude_patterns: []
